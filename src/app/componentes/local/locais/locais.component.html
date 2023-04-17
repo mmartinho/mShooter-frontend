@@ -1,0 +1,10 @@
+<h2>Locais</h2>
+<app-lista [objetos]="locais"></app-lista>
+<ap-vmessage [text]="erro" *ngIf="this.erro.length > 0"></ap-vmessage>
+<nav aria-label="Navegação de Páginas">
+    <ul class="pagination">
+        <li class="page-item" *ngFor="let pagina of qpaginas">
+            <a class="page-link" (click)="muda(pagina)" href="javascript: void(0);">{{ pagina }}</a>
+        </li>
+    </ul>
+</nav>

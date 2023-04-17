@@ -1,0 +1,99 @@
+*********************************************
+ANOTAÇÔES DE PROJETO
+Projeto: mShooter / Frontend App
+Autor: Marcus Martinho
+Data: Ago/2022
+Arquivo: Anotações de 10/04/2023 a 14/04/2023
+*********************************************
+
+1. Nas atividades anteriores, criamos a estrutura inicial da aplicação, componentes de: cabeçalho / rodapé, 
+   mensagem de erro de validação de formulário tela "home", tela de formulário "singin" 
+
+2. Nas atividades anteriores, criamos os serviços de: usuário, token, autenticação, provedor de erro global 
+   para usar o Log Server do Backend, e um componente para mostrar uma tela de erro ao usuário
+
+3. Nas atividade anteriores, alteramos o Frontend e o Backend para executar o projeto em "Home Office" usando 
+   2 computadores
+
+4. Criamos um novo serviço para utilizar as requisições de "Local"
+   >ng generate service servicos/local/local --dry-run
+   >ng generate service servicos/local/local
+
+   @see src\app\servicos\local
+
+5. Criamos mais uma pasta para abrigar tudo sobre "Local", e dentro desta, o primeiro componente
+   usado para mostrar os dados de um Objeto de Local
+   >ng generate component componentes/local/local --dry-run
+   >ng generate component componentes/local/local
+
+   @see src\app\componentes\local
+
+6. Criamos um componente "agregável genérico" para receber qualquer objeto e exibir suas propriedades/valores na tela 
+   >ng generate component componentes/shared/objeto --dry-run
+   >ng generate component componentes/shared/objeto
+
+   @see src\app\componentes\shared\objeto
+
+7. Criamos um componente "agregável genérico" para receber uma lista de objetos, exibindo-a de forma tabular
+   >ng generate component componentes/shared/lista --dry-run
+   >ng generate component componentes/shared/lista
+
+   @see src\app\componentes\shared\lista
+
+8. Criamos mais um componente para mostrar uma lista de Locais:
+   >ng generate component componentes/local/locais --dry-run
+   >ng generate component componentes/local/locais
+
+   @see src\app\componentes\local\locais
+
+9. Instalamos os pacotes do Bootstrap:
+   >npm install --save bootstrap
+
+   ...declarando o novo CSS e libs js a serem compilados, alterando o arquivo @see angular.json:
+
+   "architect": { 
+      "build": { 
+         
+         ...
+
+         "styles": [
+            "src/styles.scss",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+            "node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
+            "node_modules/bootstrap/dist/css/bootstrap-utilities.min.css"
+         ],
+         "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+         ]
+
+         ...
+      }
+
+      ...
+   }
+
+10. Refizemos os gabaritos para utilizar o novo framework de layout "Bootstrap 5" utilizando a ferramenta de layout 
+    "Pinegrow". 
+    
+    Foram removidos os conteúdos dos arquivos de "SCSS":
+    @see src\styles.scss
+    @see src\app\app.component.scss
+    @see src\app\componentes\cabecalho\cabecalho.component.scss 
+    @see src\app\componentes\rodape\rodape.component.scss
+    @see src\app\componentes\home\home.component.scss
+    @see src\app\componentes\shared\lista\lista.component.scss
+    @see src\app\componentes\shared\objeto\objeto.component.scss
+
+    Foram copiados os elementos do layout produzidos no "Pinegrow" e colados em:
+    @see src\app\componentes\cabecalho\cabecalho.component.html
+    @see src\app\componentes\rodape\rodape.component.html
+    @see src\app\componentes\home\home.component.html
+    
+11. Instalamos a lib de componentes UI Angular "PrimeNG" versão 14:
+    >npm install primeicons@14
+    >npm install primeicons
+
+    Essa lib UI já possui vários componentes prontos para serem usados
+
+

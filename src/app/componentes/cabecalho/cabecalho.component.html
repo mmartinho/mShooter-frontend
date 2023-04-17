@@ -1,0 +1,67 @@
+<header class="text-light pb-3">
+  <nav class="bg-primary navbar navbar-dark navbar-expand-lg py-4 py-lg-2 text-uppercase" data-pg-collapsed>
+    <div class="container">
+      <a class="fw-bold navbar-brand" href="#" data-pg-collapsed>
+        <img src="../../../assets/imagens/logo-mshooter.png"/>
+      </a>
+      <div class="ms-auto ms-lg-2 order-lg-1 w-auto" data-pg-collapsed>
+        <button class="border-0 btn btn-outline-light py-2" type="button" aria-label="search">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" data-pg-collapsed="false">
+            <path
+              d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown-21"
+        aria-controls="navbarNavDropdown-21"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        data-pg-collapsed>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown-21">
+        <ul class="mb-2 mb-lg-0 ms-auto navbar-nav">
+          <li class="nav-item" data-pg-collapsed>
+            <a class="active nav-link px-lg-3 py-lg-4" aria-current="page" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" data-pg-collapsed>
+            <a class="nav-link px-lg-3 py-lg-4" href="javascript:void(0);">SOBRE</a>
+          </li>
+          <li class="nav-item dropdown" data-pg-collapsed>
+            <a class="nav-link px-lg-3 py-lg-4 dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">Usuário</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-pg-collapsed>
+              <a class="dropdown-item" [routerLink]="['/login']">Login</a>
+              <a class="dropdown-item" (click)="logout()" href="javascript:void(0);">Logout</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" data-pg-collapsed *ngIf="this.usuario.logado()">
+            <a
+              class="nav-link px-lg-3 py-lg-4 dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Local</a
+            >
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-pg-collapsed>
+              <a class="dropdown-item" (click)="novoLocal()" href="javascript:void(0);">Novo</a>
+              <a class="dropdown-item" [routerLink]="['/local']">Listar</a>
+            </div>
+          </li>
+          <li class="nav-item" data-pg-collapsed>
+            <a class="nav-link px-lg-3 py-lg-4"  href="javascript:void(0);">CONTATO</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

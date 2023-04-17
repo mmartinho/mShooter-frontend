@@ -1,0 +1,46 @@
+*********************************************
+ANOTAÇÔES DE PROJETO
+Projeto: mShooter / Frontend App
+Autor: Marcus Martinho
+Data: Ago/2022
+Arquivo: Anotações de 27/03/2023 a 07/04/2023
+*********************************************
+
+1. Criamos a estrutura inicial do Frontend Angular 14:
+   >ng new mShooter
+
+   ...com "módulo de rotas" e estilo com "SCSS"
+
+2. Criamos o serviço que diz respeito ao usuário:
+   >ng generate service servicos/usuario/usuario --dry-run
+   >ng generate service servicos/usuario/usuario
+
+3. Criamos o serviço que diz respeito ao token de autenticação e de refresh:
+   >ng generate service servicos/token/auth-token --dry-run
+   >ng generate service servicos/token/auth-token
+   >ng generate service servicos/token/refresh-token --dry-run
+   >ng generate service servicos/token/refresh-token
+
+4. Criamos uma classe genérica para lidar com as funções de armazenamento dos tokens:
+   @see src\app\servicos\token\token-storage.class.ts
+
+   ...modificando os serviços de token de autenticação e refresh para extendê-la
+
+5. Criamos o serviço que diz respeito à autenticação do usuário do app
+   >ng generate service servicos/autenticacao/autenticacao --dry-run
+   >ng generate service servicos/autenticacao/autenticacao
+
+6. Criamos um novo "browserTarget" e "fileReplacement" para executar o servidor de desenvolvimento
+   no ambiente "Home Office", e para que o Frontend possa acessar o Backend ouvindo no endereço 
+   de rede Home Office.
+
+   O Firewall da estação de trabalho também está permitindo as portas 4200 e 3000 serem acessíveis a partir
+   de outro computador da rede Home Office
+   
+   @see angular.json
+   >ng serve --browser-target mShooter:build:home --host 192.168.2.103
+
+7. Na aplicação Backend, condicionamos o serviço do express para ouvir na interface "Wi-Fi", quando esta 
+   existir na estação de trabalho
+
+
