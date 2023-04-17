@@ -1,6 +1,7 @@
 {
   "name": "m-shooter",
   "version": "1.0.0",
+  "description": "Frontend para o serviço de gestão de acervo de armas, munições, recarga, e resultados de treinos e competições de atiradores esportivos.",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
