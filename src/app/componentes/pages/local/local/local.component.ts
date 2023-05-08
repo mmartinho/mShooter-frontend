@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { localNull } from '../../../servicos/local/local-null.object';
-import { Local } from '../../../servicos/local/local.interface';
+import { localNull } from '../../../../servicos/local/local-null.object';
+import { Local } from '../../../../servicos/local/local.interface';
 
 @Component({
   selector: 'app-local',

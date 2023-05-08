@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { GlobalErrorComponent } from './errors/global-error/global-error.component';
-import { HomeComponent } from './componentes/home/home.component';
-import { SigninComponent } from './componentes/signin/signin.component';
-import { LocalComponent } from './componentes/local/local/local.component';
-import { LocaisComponent } from './componentes/local/locais/locais.component';
+import { HomeComponent } from './componentes/pages/home/home.component';
+import { SigninComponent } from './componentes/pages/signin/signin.component';
+import { LocalComponent } from './componentes/pages/local/local/local.component';
+import { LocaisComponent } from './componentes/pages/local/locais/locais.component';
+import { PcesComponent } from './componentes/pages/pce/pces/pces.component';
+import { PceComponent } from './componentes/pages/pce/pce/pce.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,21 @@ const routes: Routes = [
     data: {
       title: 'Lista de Locais'
     }
+  },  
+  {
+    path : 'pce/:id',
+    component: PceComponent,
+    data: {
+      title : 'PCE'
+    }
   },   
+  {
+    path : 'pce',
+    component: PcesComponent,
+    data: {
+      title : 'Lista de PCEs'
+    }
+  },
   { 
     path: 'not-found', 
     component: NotFoundComponent,

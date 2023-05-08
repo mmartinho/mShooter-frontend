@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AuthTokenService } from '../token/auth-token.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 
 import { Usuario } from './usuario.interface';
 import { usuarioNull } from './usuario-null.object';
 import { TokenOpaco } from '../token/token-opaco.interface';
+import { AuthTokenService } from '../token/auth-token.service';
 import { RefreshTokenService } from '../token/refresh-token.service';
 
 @Injectable({
@@ -16,10 +16,6 @@ export class UsuarioService {
    * Objeto que notifica o usuário logado
    */
   private usuarioSubject = new BehaviorSubject<Usuario>(usuarioNull);
-  /**
-   * Nome do usuário que está logado
-   */
-  private nomeUsuario : string = '';
 
   constructor(
     private authTokenService: AuthTokenService,
@@ -49,8 +45,9 @@ export class UsuarioService {
   private notifica() {
     const usuario = this.decodifica();
     if(usuario) {
-      this.nomeUsuario = usuario.nome;
       this.usuarioSubject.next(usuario);
+    } else {
+      this.usuarioSubject.next(usuarioNull);
     }
   }
 
@@ -85,21 +82,5 @@ export class UsuarioService {
    */
   public getUsuario() : Observable<Usuario> {
     return this.usuarioSubject.asObservable();
-  }
-
-  /**
-   * Retorna se usuário está logado ou não
-   * @returns boolean
-   */
-  public logado() : boolean {
-    return this.authTokenService.hasToken();
-  }
-
-  /**
-   * Retorna o nome de usuário logado
-   * @returns string
-   */
-  public getNomeUsuario() : string {
-    return this.nomeUsuario;
   }
 }

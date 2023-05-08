@@ -1,10 +1,14 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as StackTrace from 'stacktrace-js';
+import jwtDecode from 'jwt-decode';
 
-import { UsuarioService } from '../../servicos/usuario/usuario.service'
 import { ServerLogService } from './server-log.service';
+import { AuthTokenService } from '../../servicos/token/auth-token.service';
+import { Usuario } from '../../servicos/usuario/usuario.interface';
+import { usuarioNull } from '../../servicos/usuario/usuario-null.object';
 
 /** 
  * Declaramos como "Injectable", sem escopo de 
@@ -20,48 +24,59 @@ export class GlobalErrorHandler implements ErrorHandler {
         private injector: Injector
     ) { }
 
+    /**
+     * @returns Usuario
+     */
+    usuario(): Usuario {
+        const authTokenService = this.injector.get(AuthTokenService);
+        const token = authTokenService.getToken();
+        var usuario = usuarioNull;
+        if(token) {
+          usuario = jwtDecode(token) as Usuario;
+        }
+        return usuario;
+    }
+
+    /**
+     * @param any error 
+     */
     handleError(error: any): void {
-        /** 
-         * Injetando as dependências via "injetor" ao invés
-         * de usar a injeção no "construtor". Isso é porque não sabemos
-         * que partes da aplicação estarão comprometidas, e é possível
-         * que, em estado de Exceção, algumas das dependências não possam 
-         * ser instanciadas 
-         */
-        const location = this.injector.get(LocationStrategy);
-        const userService = this.injector.get(UsuarioService);
-        const serverLogService = this.injector.get(ServerLogService);
         const router = this.injector.get(Router);
-
+        const location = this.injector.get(LocationStrategy);
         const urlFromLocation = location instanceof PathLocationStrategy ? location.path() : '';
-
-        /** 
-         * Caso seja do tipo "Error", ele tem uma propriedade "message" 
-         */
-        const errorMessage = error.message ? error.message : error.toString();
-
-        StackTrace.fromError(error).then(
-            allStackFrames => {
-                const stackAsString = allStackFrames.map(stackFrameItem => stackFrameItem.toString()).join('\n');
-                const serverLog = { 
-                    message : errorMessage, 
-                    url : urlFromLocation, 
-                    user : userService.getNomeUsuario(),
-                    stack : stackAsString
-                }
-                serverLogService.log(serverLog).subscribe( { 
-                    complete: () => {
-                        console.log('Erro registrado no backend da aplicação');
-                    },
-                    error: (error) => {
-                        console.log(error.message)
-                    },
-                    next : (value) => {
-                        router.navigate(['/error']);
+        if(error instanceof Error) {
+            const serverLogService = this.injector.get(ServerLogService);
+            StackTrace.fromError(error).then(
+                allStackFrames => {
+                    const stackAsString = allStackFrames.map(stackFrameItem => stackFrameItem.toString()).join('\n');
+                    const serverLog = { 
+                        message : error.message, 
+                        url : urlFromLocation, 
+                        user : (this.usuario().id !== 0 ? this.usuario().nome : 'Desconhecido'),
+                        stack : stackAsString
                     }
-                 });
+                    serverLogService.log(serverLog).subscribe( { 
+                        complete: () => {
+                            console.log('Erro registrado no backend da aplicação');
+                        },
+                        error: (error) => {
+                            console.log(error.message)
+                        },
+                        next : (value) => {
+                            router.navigate(['/error']);
+                        }
+                    });
+                }
+            );
+        } else if(error instanceof HttpErrorResponse){
+            if(error.status == 401) {
+                router.navigate(['login']);
+            } else {
+                router.navigate(['/error']);
             }
-        );
+        } else {
+            router.navigate(['/error']);
+        }
     }
     
 }

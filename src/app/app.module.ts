@@ -1,34 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RodapeComponent } from './componentes/rodape/rodape.component';
-import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
-import { SigninComponent } from './componentes/signin/signin.component';
-import { SharedModule } from './componentes/shared/shared.module';
 import { ErrorsModule } from './errors/errors.module';
-import { HomeComponent } from './componentes/home/home.component';
-import { LocalComponent } from './componentes/local/local/local.component';
-import { LocaisComponent } from './componentes/local/locais/locais.component';
+import { BlocksModule } from './componentes/blocks/blocks.module';
+
+import { AppComponent } from './app.component';
+import { PagesModule } from './componentes/pages/pages.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RodapeComponent,
-    CabecalhoComponent,
-    SigninComponent,
-    HomeComponent,
-    LocalComponent,
-    LocaisComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    SharedModule,
-    ErrorsModule
+    BlocksModule,
+    PagesModule,
+    ErrorsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

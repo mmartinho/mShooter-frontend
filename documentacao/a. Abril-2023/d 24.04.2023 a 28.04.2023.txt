@@ -1,0 +1,22 @@
+*********************************************
+ANOTAÇÔES DE PROJETO
+Projeto: mShooter / Frontend App
+Autor: Marcus Martinho
+Data: Ago/2022
+Arquivo: Anotações de 24/04/2023 a 28/04/2023
+*********************************************
+
+1. Nas atividades anteriores, instalamos as libs "Bootstrap" e "PrimeNG", refazendo todas os gabaritos dos componentes visuais
+   para se adequarem ao framework do Bootstrap
+
+2. Utilizando a lib do "PrimeNG", criamos o componente de lista de objetos com paginação incluída:
+   @see src\app\componentes\shared\lista-prime
+
+3. Criamos um componente de escopo de página que mostra a lista de PCEs, utilizando o novo componente "lista-prime":   
+   @see src\app\componentes\pce\pces
+
+4. Refatoramos o componente de escopo de página que mostra a lista de Locais, que passou a usar o novo componente "lista-prime"
+   @see src\app\componentes\local\locais
+
+
+

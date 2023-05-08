@@ -1,0 +1,21 @@
+*********************************************
+ANOTAÇÔES DE PROJETO
+Projeto: mShooter / Frontend App
+Autor: Marcus Martinho
+Data: Ago/2022
+Arquivo: Anotações de 02/05/2023 a 05/05/2023
+*********************************************
+
+1. Nas atividades anteriores, utilizando a lib "PrimeNG", criamos o componente "lista-prime" e refatoramos os componentes
+   de escopo de página:
+   @see src\app\componentes\pce\pces
+   @see src\app\componentes\local\locais
+
+2. Criamos um novo módulo para organizar os componentes agregadores de outros componentes (blocos):
+   @see src\app\componentes\blocks\blocks.module.ts
+
+3. Criamos um novo módulo para organizar os componentes de escopo de página:
+   @see src\app\componentes\pages\pages.module.ts
+
+4. Excluímos todo o componente de "cabeçalho" contendo o layout de menu e outros elementos da aplicação pelo componente 
+   "PrimeNG MegaMenu". Nele, definimos os itens de menu, incluindo o Observable de usuário logado

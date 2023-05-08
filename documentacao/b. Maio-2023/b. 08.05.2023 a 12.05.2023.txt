@@ -1,0 +1,17 @@
+*********************************************
+ANOTAÇÔES DE PROJETO
+Projeto: mShooter / Frontend App
+Autor: Marcus Martinho
+Data: Ago/2022
+Arquivo: Anotações de 08.05.2023 a 12.05.2023
+*********************************************
+
+1. Nas atividades anteriores, excluímos todo o componente de "cabeçalho" contendo o layout de menu e outros elementos 
+   da aplicação pelo componente "PrimeNG MegaMenu". Nele, definimos os itens de menu, incluindo o Observable de usuário logado
+
+2. Instalamos o componente NG Bootstrap: 
+   >ng add @ng-bootstrap/ng-bootstrap 
+  
+   A partir desse momento, poderemos utilizar toda e qualquer definição de classes do Bootstrap 5
+
+

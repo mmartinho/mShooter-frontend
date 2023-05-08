@@ -1,0 +1,16 @@
+export const pceNull = {
+    id: 0,
+    nome: '',
+    esportista_id : 0,
+    tipo: '',
+    alias: '',
+    sigma: '',
+    nserie: '',
+    descricao: '',
+    marca: '',
+    modelo: '',
+    calibre: '',
+    dt_fabricacao: '',    
+    createdAt : '',
+    updatedAt : '',
+}
